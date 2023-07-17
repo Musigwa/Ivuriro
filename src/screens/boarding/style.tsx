@@ -1,4 +1,4 @@
-import { width, height } from '../../style';
+import { height, width } from '@/style';
 import { StyleSheet } from 'react-native';
 
 export const DOT_SIZE = 25;
