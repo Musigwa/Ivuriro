@@ -1,33 +1,51 @@
 import { height, width } from '@/style';
-import { StyleSheet } from 'react-native';
+import { platform } from 'os';
+import { Platform, StyleSheet } from 'react-native';
 
 export const DOT_SIZE = 25;
 
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'red',
   },
   itemStyle: {
-    padding: 40,
     width,
     height,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   imageStyle: {
-    maxWidth: width * 0.9,
-    // maxHeight: width * 1.3,
-    resizeMode: 'contain',
-    backgroundColor: 'white',
+    width,
+    height: '70%',
+    resizeMode: 'stretch',
+    // backgroundColor: 'blue',
   },
   textContainer: {
-    flex: 0.5,
+    height: '28%',
+    width: '90%',
+    top: -30,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   heading: {
     color: '#444',
     fontSize: 24,
     fontWeight: '800',
     textAlign: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    padding: Platform.select({ android: 20, ios: 20 }),
+    borderRadius: 50,
+    // backgroundColor: '#06b900',
+    alignSelf: 'flex-end',
+  },
+  skipBtn: {
+    fontWeight: '700',
+    color: 'gray',
+    fontSize: 18,
   },
   pagination: {
     position: 'absolute',
@@ -37,9 +55,9 @@ export default StyleSheet.create({
     height: DOT_SIZE,
   },
   paginationDot: {
-    width: DOT_SIZE * 0.3,
+    width: DOT_SIZE * 0.8,
     height: DOT_SIZE * 0.3,
-    borderRadius: DOT_SIZE * 0.08,
+    borderRadius: DOT_SIZE,
   },
   paginationDotContainer: {
     width: DOT_SIZE,

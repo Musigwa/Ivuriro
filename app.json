@@ -4,28 +4,26 @@
     "slug": "Ivuriro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/appIcon.png",
+    "icon": "./src/assets/icons/appIcon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#06b900"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/splash.png",
+        "foregroundImage": "./src/assets/images/splash.png",
         "backgroundColor": "#06b900"
       },
       "package": "com.musigwa.Ivuriro"
     },
     "web": {
-      "favicon": "./src/assets/appIcon.png"
+      "favicon": "./src/assets/icons/appIcon.png"
     }
   }
 }
