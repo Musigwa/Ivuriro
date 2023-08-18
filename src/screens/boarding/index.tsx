@@ -1,12 +1,12 @@
 import AntDesignIcons from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Animated, Platform, Pressable, View } from 'react-native';
+import { Animated, View } from 'react-native';
 import type { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
 import PagerView from 'react-native-pager-view';
+import { Button, IconButton, useTheme } from 'react-native-paper';
 import data from './data';
 import style from './style';
-import { Button, IconButton, useTheme } from 'react-native-paper';
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 

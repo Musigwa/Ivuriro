@@ -1,32 +1,14 @@
-import BoardingScreen from './screens/boarding';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { PaperProvider } from 'react-native-paper';
-import { lightTheme, darkTheme } from './assets/themes';
 import { useColorScheme } from 'react-native';
-
-// export default () => {
-//   return (
-//     <SafeAreaProvider>
-//       <SafeAreaView style={{ flex: 1 }}>
-//         <BoardingScreen />
-//       </SafeAreaView>
-//     </SafeAreaProvider>
-//   );
-// };
+import { PaperProvider } from 'react-native-paper';
+import { AppDarkTheme, AppDefaultTheme } from './assets/themes';
+import AppNavigator from './routes';
 
 export default () => {
   const colorScheme = useColorScheme();
-
-  const paperTheme = colorScheme === 'dark' ? { ...darkTheme } : { ...lightTheme };
+  const AppTheme = colorScheme === 'dark' ? AppDarkTheme : AppDefaultTheme;
   return (
-    // <StoreProvider store={store}>
-    <PaperProvider theme={paperTheme}>
-      <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <BoardingScreen />
-        </SafeAreaView>
-      </SafeAreaProvider>
+    <PaperProvider theme={AppTheme}>
+      <AppNavigator theme={AppTheme} />
     </PaperProvider>
-    // </StoreProvider>
   );
 };

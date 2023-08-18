@@ -8,7 +8,7 @@ import {
   View,
   Platform,
 } from 'react-native';
-import style from './style';
+import style from '../style';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useTheme } from 'react-native-paper';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, View } from 'react-native';
-import data from './data';
-import style, { DOT_SIZE } from './style';
+import data from '../data';
+import style, { DOT_SIZE } from '../style';
 
 const Pagination = ({
   scrollOffsetAnimatedValue,
