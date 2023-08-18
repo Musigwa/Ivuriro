@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ViewProps, ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, ViewProps, ViewStyle, useWindowDimensions } from 'react-native';
 import React, { FC, PropsWithChildren, Children } from 'react';
 
 type ContainerProps = ViewProps & {
@@ -12,7 +12,8 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   style,
   variant = 'column',
 }) => {
-  let defaultStyle: ViewStyle = { ...styles.column, minWidth: '90%' };
+  const { width } = useWindowDimensions();
+  let defaultStyle: ViewStyle = { ...styles.column };
   switch (variant) {
     case 'row':
       defaultStyle = { ...defaultStyle, ...styles.row };

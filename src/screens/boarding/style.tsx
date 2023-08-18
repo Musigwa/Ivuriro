@@ -1,5 +1,4 @@
 import { height, width } from '@/style';
-import { platform } from 'os';
 import { Platform, StyleSheet } from 'react-native';
 
 export const DOT_SIZE = 25;

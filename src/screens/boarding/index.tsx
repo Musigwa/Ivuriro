@@ -1,30 +1,34 @@
+import { useAppTheme } from '@/assets/themes';
+import { BoardingProps } from '@/interfaces';
 import AntDesignIcons from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Animated, View } from 'react-native';
 import type { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
 import PagerView from 'react-native-pager-view';
-import { Button, IconButton, useTheme } from 'react-native-paper';
+import { Button, IconButton } from 'react-native-paper';
 import data from './data';
 import style from './style';
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
-const BoardingScreen = () => {
+const BoardingScreen = ({ navigation }: BoardingProps) => {
   const [position, setPosition] = useState(0);
   const scrollOffsetAnimatedValue = React.useRef(new Animated.Value(0)).current;
   const positionAnimatedValue = React.useRef(new Animated.Value(0)).current;
 
   const inputRange = [0, 0.5, 0.99];
   const inputRangeOpacity = [0, 0.5, 0.99];
-  const { colors } = useTheme();
+  const { colors } = useAppTheme();
   const scale = scrollOffsetAnimatedValue.interpolate({ inputRange, outputRange: [1, 0, 1] });
   const opacity = scrollOffsetAnimatedValue.interpolate({
     inputRange: inputRangeOpacity,
     outputRange: [1, 0, 1],
   });
 
-  const onPress = () => {};
+  const handleComplete = () => {
+    navigation.navigate('GetStarted');
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -76,7 +80,7 @@ const BoardingScreen = () => {
                 {position !== data.length - 1 ? (
                   <Button
                     labelStyle={{ fontWeight: 'bold', fontSize: 18 }}
-                    onPress={() => console.log('Pressed')}
+                    onPress={handleComplete}
                     rippleColor='transparent'
                     compact
                   >
@@ -89,7 +93,7 @@ const BoardingScreen = () => {
                     )}
                     iconColor={colors.onPrimary}
                     size={40}
-                    onPress={() => console.log('Pressed')}
+                    onPress={handleComplete}
                     containerColor={colors.primary}
                   />
                 )}
@@ -98,10 +102,6 @@ const BoardingScreen = () => {
           </View>
         ))}
       </AnimatedPagerView>
-      {/* <Pagination
-        scrollOffsetAnimatedValue={scrollOffsetAnimatedValue}
-        positionAnimatedValue={positionAnimatedValue}
-      /> */}
     </View>
   );
 };

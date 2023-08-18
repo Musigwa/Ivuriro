@@ -1,3 +1,3 @@
-import BoardingScreen from './src';
+import App from './src';
 
-export default BoardingScreen;
+export default App;
