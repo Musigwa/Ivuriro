@@ -1,12 +1,12 @@
-import { StyleSheet, View, Image } from 'react-native';
-import React, { useState } from 'react';
-import { LoginProps } from '@/interfaces';
-import { Container } from '@/components/containers';
-import { Button, TextInput, Text } from 'react-native-paper';
-import { useAppTheme } from '@/assets/themes';
 import appleLogo from '@/assets/icons/apple.png';
-import googleLogo from '@/assets/icons/google.png';
 import facebookLogo from '@/assets/icons/facebook.png';
+import googleLogo from '@/assets/icons/google.png';
+import { useAppTheme } from '@/assets/themes';
+import { Container } from '@/components/containers';
+import { LoginProps, SignUpProps } from '@/interfaces';
+import React, { useState } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+import { Button, Text, TextInput } from 'react-native-paper';
 
 const LoginScreen = ({ navigation }: LoginProps) => {
   const [hidePwd, setHidePwd] = useState(true);
@@ -21,15 +21,16 @@ const LoginScreen = ({ navigation }: LoginProps) => {
       spacing={30}
     >
       {/* The upper part of the screen */}
-      <Container variant='columnCentered' style={{ width: '100%' }} spacing={20}>
+      <Container variant='columnCentered' spacing={20}>
         <TextInput
           label='Enter your email'
           left={<TextInput.Icon icon='email' />}
           style={{ width: '100%' }}
           outlineStyle={{ borderRadius: 15 }}
           mode='outlined'
+          keyboardType='email-address'
         />
-        <Container style={{ width: '100%' }}>
+        <Container>
           <TextInput
             label='Enter your password'
             left={<TextInput.Icon icon='lock' />}
@@ -43,6 +44,8 @@ const LoginScreen = ({ navigation }: LoginProps) => {
             style={{ width: '100%' }}
             outlineStyle={{ borderRadius: 15 }}
             mode='outlined'
+            keyboardType='visible-password'
+            returnKeyLabel='login'
           />
           <Button compact style={{ alignSelf: 'flex-end' }} labelStyle={{ fontWeight: '700' }}>
             Forgot Password?
@@ -50,7 +53,7 @@ const LoginScreen = ({ navigation }: LoginProps) => {
         </Container>
       </Container>
       {/* The center part of the screen */}
-      <Container style={{ width: '100%' }} spacing={10}>
+      <Container spacing={10}>
         <Button
           style={{ width: '100%' }}
           contentStyle={{ paddingVertical: 10 }}
@@ -61,27 +64,29 @@ const LoginScreen = ({ navigation }: LoginProps) => {
           Login
         </Button>
         <Container variant='rowCentered'>
-          <Text variant='bodyLarge'>Don't have an account?</Text>
+          <Text variant='bodyLarge' style={{ color: colors.outline }}>
+            Don't have an account?
+          </Text>
           <Button
             compact
             style={{ alignSelf: 'flex-end' }}
             labelStyle={{ fontWeight: '700' }}
-            onPress={() => navigation.navigate('Signup')}
+            onPress={() => navigation.navigate('SignUp')}
           >
             Sign Up
           </Button>
         </Container>
-        <Container style={{ width: '100%' }} variant='row'>
+        <Container variant='row'>
           <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
           <Text style={{ color: colors.onSurfaceDisabled }}>OR</Text>
           <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
         </Container>
       </Container>
       {/* The lower part of the screen */}
-      <Container style={{ width: '100%' }} spacing={15}>
+      <Container spacing={15}>
         {[
-          { title: 'Apple', icon: appleLogo },
           { title: 'Google', icon: googleLogo },
+          { title: 'Apple', icon: appleLogo },
           { title: 'Facebook', icon: facebookLogo },
         ].map(({ title, icon }, idx) => {
           return (

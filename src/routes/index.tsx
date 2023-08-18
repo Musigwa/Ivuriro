@@ -1,4 +1,4 @@
-import { AppThemeType } from '@/assets/themes';
+import { AppThemeType, useAppTheme } from '@/assets/themes';
 import GetStartedScreen from '@/screens/auth/GetStarted';
 import SignUpScreen from '@/screens/auth/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,6 +11,7 @@ import LoginScreen from '@/screens/auth/Login';
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
+  const { colors } = theme;
   return (
     <NavigationContainer
       theme={{
@@ -18,8 +19,20 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
         colors: { ...theme.colors, card: theme.colors.surface, border: 'transparent' },
       }}
     >
-      <RootStack.Navigator initialRouteName='Boarding'>
-        <RootStack.Screen name='Boarding' component={BoardingScreen} />
+      <RootStack.Navigator
+        initialRouteName='Boarding'
+        screenOptions={{
+          headerShadowVisible: false,
+          headerTintColor: colors.text,
+          headerTitleStyle: { fontWeight: '800', fontSize: 20 },
+          headerBackTitleVisible: false,
+        }}
+      >
+        <RootStack.Screen
+          name='Boarding'
+          component={BoardingScreen}
+          options={{ headerShadowVisible: false, title: '' }}
+        />
         <RootStack.Screen
           name='GetStarted'
           component={GetStartedScreen}
@@ -30,9 +43,11 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
           component={LoginScreen}
           options={{
             headerShadowVisible: false,
+            headerTintColor: colors.text,
+            headerTitleStyle: { fontWeight: '800', fontSize: 20 },
           }}
         />
-        <RootStack.Screen name='Signup' component={SignUpScreen} />
+        <RootStack.Screen name='SignUp' component={SignUpScreen} options={{ title: 'Sign Up' }} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

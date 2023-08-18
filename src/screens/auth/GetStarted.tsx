@@ -17,16 +17,12 @@ const GetStartedScreen = ({ navigation }: GetStartedProps) => {
         </Text>
         <Text
           variant='bodyLarge'
-          style={{
-            textAlign: 'center',
-            fontWeight: '600',
-            color: colors.outline,
-          }}
+          style={{ textAlign: 'center', fontWeight: '600', color: colors.outline }}
         >
           Login to enjoy the features we've privided, and stay healthy!
         </Text>
       </Container>
-      <Container spacing={28} style={{ width: '100%' }}>
+      <Container spacing={28}>
         <Button
           style={{ width: '100%' }}
           contentStyle={{ paddingVertical: 10 }}
@@ -41,7 +37,7 @@ const GetStartedScreen = ({ navigation }: GetStartedProps) => {
           contentStyle={{ paddingVertical: 7 }}
           labelStyle={{ fontWeight: '700', fontSize: 16 }}
           mode='outlined'
-          onPress={() => navigation.navigate('Signup')}
+          onPress={() => navigation.navigate('SignUp')}
         >
           Sign Up
         </Button>

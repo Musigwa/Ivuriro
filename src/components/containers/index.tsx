@@ -13,7 +13,7 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   variant = 'column',
 }) => {
   const { width } = useWindowDimensions();
-  let defaultStyle: ViewStyle = { ...styles.column };
+  let defaultStyle: ViewStyle = { ...styles.column, width: '100%' };
   switch (variant) {
     case 'row':
       defaultStyle = { ...defaultStyle, ...styles.row };

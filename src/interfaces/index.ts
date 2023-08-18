@@ -4,10 +4,10 @@ export type RootStackParamList = {
   Boarding: undefined;
   GetStarted: undefined;
   Login: undefined;
-  Signup: undefined;
+  SignUp: undefined;
 };
 
 export type BoardingProps = NativeStackScreenProps<RootStackParamList, 'Boarding'>;
 export type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
-export type SignupProps = NativeStackScreenProps<RootStackParamList, 'Signup'>;
+export type SignUpProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 export type GetStartedProps = NativeStackScreenProps<RootStackParamList, 'GetStarted'>;
