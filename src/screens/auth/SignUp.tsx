@@ -14,7 +14,9 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
   const { colors } = useAppTheme();
 
   const handleSocialLogin = (platform: 'facebook' | 'google' | 'apple' | string) => {};
-
+  const handleCheck = () => {
+    setChecked(!checked);
+  };
   return (
     <Container
       variant='column'
@@ -61,14 +63,12 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
             autoCapitalize='none'
           />
           <Container variant='rowCentered' style={{ flexWrap: 'wrap', rowGap: -12 }}>
-            <Checkbox.Android
-              status={checked ? 'checked' : 'unchecked'}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-            />
+            <Checkbox.Android status={checked ? 'checked' : 'unchecked'} onPress={handleCheck} />
             <Text variant='bodyLarge' style={{ color: colors.outline, fontStyle: 'italic' }}>
-              I agree to <Text style={{ fontWeight: '900' }}>Ivuriro</Text>
+              {`\u2002I agree to\u2002`}
+              <Text variant='bodyLarge' style={{ fontWeight: '900' }}>
+                Ivuriro
+              </Text>
             </Text>
             <Button compact mode='text' labelStyle={{ fontStyle: 'italic' }}>
               Terms of Service
@@ -89,7 +89,7 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
           contentStyle={{ paddingVertical: 10 }}
           labelStyle={{ fontWeight: '700', fontSize: 16 }}
           mode='contained'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => {}}
         >
           Sign Up
         </Button>

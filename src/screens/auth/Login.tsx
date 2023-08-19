@@ -3,7 +3,7 @@ import facebookLogo from '@/assets/icons/facebook.png';
 import googleLogo from '@/assets/icons/google.png';
 import { useAppTheme } from '@/assets/themes';
 import { Container } from '@/components/containers';
-import { LoginProps, SignUpProps } from '@/interfaces';
+import { LoginProps } from '@/interfaces';
 import React, { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';

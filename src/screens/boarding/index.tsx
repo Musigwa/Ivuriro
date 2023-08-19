@@ -50,13 +50,8 @@ const BoardingScreen = ({ navigation }: BoardingProps) => {
               style={[style.imageStyle, { transform: [{ scale }] }]}
             />
             <LinearGradient
-              colors={[
-                'rgb(215, 232, 229)',
-                'rgb(238, 246, 243)',
-                'rgb(255, 255, 255)',
-                'rgb(255, 255, 255)',
-              ]}
-              style={style.textContainer}
+              colors={Object.values(colors.elevation).slice(0, 3).reverse()}
+              style={[style.textContainer, { backgroundColor: colors.background }]}
             >
               <Animated.Text style={[style.heading, { opacity }]}>{heading}</Animated.Text>
               <View
