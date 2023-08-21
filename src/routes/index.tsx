@@ -5,9 +5,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BoardingScreen from '@/screens/boarding';
 import * as React from 'react';
-import { RootStackParamList } from '@/interfaces';
+import { RootStackParamList } from '@/interfaces/types';
 import LoginScreen from '@/screens/auth/Login';
-
+import AppTabs from './tabs';
+import { headerTitleStyle } from '@/style';
+import { StatusBar } from 'expo-status-bar';
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
@@ -19,12 +21,13 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
         colors: { ...theme.colors, card: theme.colors.surface, border: 'transparent' },
       }}
     >
+      <StatusBar style='auto' />
       <RootStack.Navigator
         initialRouteName='Boarding'
         screenOptions={{
           headerShadowVisible: false,
           headerTintColor: colors.text,
-          headerTitleStyle: { fontWeight: '800', fontSize: 20 },
+          headerTitleStyle,
           headerBackTitleVisible: false,
         }}
       >
@@ -48,6 +51,7 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
           }}
         />
         <RootStack.Screen name='SignUp' component={SignUpScreen} options={{ title: 'Sign Up' }} />
+        <RootStack.Screen name='Tabs' component={AppTabs} options={{ headerShown: false }} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

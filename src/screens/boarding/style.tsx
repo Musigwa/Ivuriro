@@ -14,26 +14,19 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   imageStyle: {
-    width,
-    height: '70%',
+    width: '90%',
+    height: '65%',
     resizeMode: 'stretch',
     // backgroundColor: 'blue',
   },
   textContainer: {
-    height: '28%',
+    height: '30%',
     width: '90%',
     top: -30,
     paddingHorizontal: 20,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  heading: {
-    color: '#444',
-    fontSize: 24,
-    fontWeight: '800',
-    textAlign: 'center',
-    marginBottom: 20,
   },
   button: {
     padding: Platform.select({ android: 20, ios: 20 }),
@@ -45,13 +38,6 @@ export default StyleSheet.create({
     fontWeight: '700',
     color: 'gray',
     fontSize: 18,
-  },
-  pagination: {
-    position: 'absolute',
-    right: 20,
-    bottom: 40,
-    flexDirection: 'row',
-    height: DOT_SIZE,
   },
   paginationDot: {
     width: DOT_SIZE * 0.8,

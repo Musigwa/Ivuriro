@@ -15,7 +15,7 @@ export const AppDefaultTheme = {
   colors: {
     ...MD3LightTheme.colors,
     ...LightTheme.colors,
-    primary: 'rgb(24, 110, 0)',
+    primary: 'rgb(6, 185, 0)',
     onPrimary: 'rgb(255, 255, 255)',
     primaryContainer: 'rgb(146, 251, 113)',
     onPrimaryContainer: 'rgb(3, 33, 0)',
@@ -37,13 +37,13 @@ export const AppDefaultTheme = {
     onSurface: 'rgb(26, 28, 24)',
     surfaceVariant: 'rgb(223, 228, 215)',
     onSurfaceVariant: 'rgb(67, 72, 63)',
-    outline: 'rgb(115, 121, 110)',
-    outlineVariant: 'rgb(195, 200, 188)',
+    outline: 'rgb(195, 200, 188)',
+    outlineVariant: 'rgb(115, 121, 110)',
     shadow: 'rgb(0, 0, 0)',
     scrim: 'rgb(0, 0, 0)',
     inverseSurface: 'rgb(47, 49, 45)',
     inverseOnSurface: 'rgb(241, 241, 234)',
-    inversePrimary: 'rgb(119, 222, 88)',
+    inversePrimary: 'rgb(6, 185, 0)',
     elevation: {
       level0: 'transparent',
       level1: 'rgb(242, 246, 234)',
@@ -57,13 +57,14 @@ export const AppDefaultTheme = {
     backdrop: 'rgba(45, 50, 41, 0.4)',
   },
 };
+
 export const AppDarkTheme = {
   ...MD3DarkTheme,
   ...DarkTheme,
   colors: {
     ...MD3DarkTheme.colors,
     ...DarkTheme.colors,
-    primary: 'rgb(119, 222, 88)',
+    primary: 'rgb(6, 185, 0)',
     onPrimary: 'rgb(8, 57, 0)',
     primaryContainer: 'rgb(16, 83, 0)',
     onPrimaryContainer: 'rgb(146, 251, 113)',
@@ -86,12 +87,12 @@ export const AppDarkTheme = {
     surfaceVariant: 'rgb(67, 72, 63)',
     onSurfaceVariant: 'rgb(195, 200, 188)',
     outline: 'rgb(141, 147, 135)',
-    outlineVariant: 'rgb(67, 72, 63)',
+    outlineVariant: 'rgb(141, 147, 135)',
     shadow: 'rgb(0, 0, 0)',
     scrim: 'rgb(0, 0, 0)',
     inverseSurface: 'rgb(227, 227, 220)',
     inverseOnSurface: 'rgb(47, 49, 45)',
-    inversePrimary: 'rgb(24, 110, 0)',
+    inversePrimary: 'rgb(6, 185, 0)',
     elevation: {
       level0: 'transparent',
       level1: 'rgb(31, 38, 27)',

@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, ViewProps, ViewStyle, useWindowDimensions } from 'react-native';
-import React, { FC, PropsWithChildren, Children } from 'react';
+import React, { Children, FC, PropsWithChildren } from 'react';
+import { ScrollView, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 
 type ContainerProps = ViewProps & {
   variant?: 'row' | 'column' | 'columnCentered' | 'rowCentered';
   spacing?: number;
+  scrollable?: boolean;
 };
 
 export const Container: FC<PropsWithChildren<ContainerProps>> = ({
@@ -11,9 +12,12 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   spacing,
   style,
   variant = 'column',
+  scrollable = false,
 }) => {
-  const { width } = useWindowDimensions();
-  let defaultStyle: ViewStyle = { ...styles.column, width: '100%' };
+  let defaultStyle: ViewStyle = {
+    ...styles.column,
+    width: '100%',
+  };
   switch (variant) {
     case 'row':
       defaultStyle = { ...defaultStyle, ...styles.row };
@@ -27,15 +31,23 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
     default:
       break;
   }
-  return (
-    <View style={[defaultStyle, style]}>
-      {Children.map(children, (child, idx) => (
-        <>
-          {idx !== 0 && <View style={{ height: spacing }} />}
-          {child}
-        </>
-      ))}
-    </View>
+  const RenderChildren = Children.map(children, (child, idx) => (
+    <>
+      {idx !== 0 && <View style={{ height: spacing }} />}
+      {child}
+    </>
+  ));
+
+  return scrollable ? (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1 }}
+      contentContainerStyle={[defaultStyle, style, { padding: 25 }]}
+    >
+      {RenderChildren}
+    </ScrollView>
+  ) : (
+    <View style={[defaultStyle, style]}>{RenderChildren}</View>
   );
 };
 

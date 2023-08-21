@@ -1,30 +1,22 @@
-import appleLogo from '@/assets/icons/apple.png';
-import facebookLogo from '@/assets/icons/facebook.png';
-import googleLogo from '@/assets/icons/google.png';
 import { useAppTheme } from '@/assets/themes';
+import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
-import { LoginProps } from '@/interfaces';
+import { LoginProps } from '@/interfaces/types';
 import React, { useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 
 const LoginScreen = ({ navigation }: LoginProps) => {
   const [hidePwd, setHidePwd] = useState(true);
   const { colors } = useAppTheme();
 
-  const handleSocialLogin = (platform: 'facebook' | 'google' | 'apple' | string) => {};
-
   return (
-    <Container
-      variant='column'
-      style={{ flex: 1, paddingHorizontal: 25, marginTop: 40 }}
-      spacing={30}
-    >
+    <Container variant='columnCentered' spacing={25} scrollable>
       {/* The upper part of the screen */}
       <Container variant='columnCentered' spacing={20}>
         <TextInput
           label='Enter your email'
-          left={<TextInput.Icon icon='email' />}
+          left={<TextInput.Icon icon='email' color={colors.outlineVariant} />}
           style={{ width: '100%' }}
           outlineStyle={{ borderRadius: 15 }}
           mode='outlined'
@@ -33,11 +25,12 @@ const LoginScreen = ({ navigation }: LoginProps) => {
         <Container>
           <TextInput
             label='Enter your password'
-            left={<TextInput.Icon icon='lock' />}
+            left={<TextInput.Icon icon='lock' color={colors.outlineVariant} />}
             right={
               <TextInput.Icon
                 onPress={() => setHidePwd(!hidePwd)}
                 icon={`eye${!hidePwd ? '-off' : ''}`}
+                color={colors.outlineVariant}
               />
             }
             secureTextEntry={hidePwd}
@@ -59,12 +52,12 @@ const LoginScreen = ({ navigation }: LoginProps) => {
           contentStyle={{ paddingVertical: 10 }}
           labelStyle={{ fontWeight: '700', fontSize: 16 }}
           mode='contained'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate('Tabs')}
         >
           Login
         </Button>
         <Container variant='rowCentered'>
-          <Text variant='bodyLarge' style={{ color: colors.outline }}>
+          <Text variant='bodyLarge' style={{ color: colors.outlineVariant }}>
             Don't have an account?
           </Text>
           <Button
@@ -77,34 +70,13 @@ const LoginScreen = ({ navigation }: LoginProps) => {
           </Button>
         </Container>
         <Container variant='row'>
-          <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
-          <Text style={{ color: colors.onSurfaceDisabled }}>OR</Text>
-          <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
+          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
+          <Text style={{ color: colors.outlineVariant }}>OR</Text>
+          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
         </Container>
       </Container>
       {/* The lower part of the screen */}
-      <Container spacing={15}>
-        {[
-          { title: 'Google', icon: googleLogo },
-          { title: 'Apple', icon: appleLogo },
-          { title: 'Facebook', icon: facebookLogo },
-        ].map(({ title, icon }, idx) => {
-          return (
-            <Button
-              key={idx}
-              icon={() => <Image style={{ width: 25, height: 25 }} source={icon} />}
-              style={{ width: '100%' }}
-              contentStyle={{ paddingVertical: 10 }}
-              labelStyle={{ fontWeight: '700', fontSize: 16, color: colors.onBackground }}
-              mode='outlined'
-              onPress={() => handleSocialLogin(title.toLowerCase())}
-              loading={false}
-            >
-              {`Sign in with ${title}`}
-            </Button>
-          );
-        })}
-      </Container>
+      <SocialButtons />
     </Container>
   );
 };

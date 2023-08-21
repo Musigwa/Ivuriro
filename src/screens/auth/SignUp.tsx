@@ -1,11 +1,9 @@
-import appleLogo from '@/assets/icons/apple.png';
-import facebookLogo from '@/assets/icons/facebook.png';
-import googleLogo from '@/assets/icons/google.png';
 import { useAppTheme } from '@/assets/themes';
+import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
-import { SignUpProps } from '@/interfaces';
+import { SignUpProps } from '@/interfaces/types';
 import React, { useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Checkbox, Text, TextInput } from 'react-native-paper';
 
 const SingUpScreen = ({ navigation }: SignUpProps) => {
@@ -13,21 +11,16 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
   const [checked, setChecked] = useState(false);
   const { colors } = useAppTheme();
 
-  const handleSocialLogin = (platform: 'facebook' | 'google' | 'apple' | string) => {};
   const handleCheck = () => {
     setChecked(!checked);
   };
   return (
-    <Container
-      variant='column'
-      style={{ flex: 1, paddingHorizontal: 25, marginTop: 20, overflow: 'scroll' }}
-      spacing={30}
-    >
+    <Container variant='column' spacing={30} scrollable>
       {/* The upper part of the screen */}
       <Container variant='columnCentered' spacing={20}>
         <TextInput
           label='Enter your full name'
-          left={<TextInput.Icon icon='account' />}
+          left={<TextInput.Icon icon='account' color={colors.outlineVariant} />}
           style={{ width: '100%' }}
           outlineStyle={{ borderRadius: 15 }}
           mode='outlined'
@@ -35,7 +28,7 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
         />
         <TextInput
           label='Enter your email'
-          left={<TextInput.Icon icon='email' />}
+          left={<TextInput.Icon icon='email' color={colors.outlineVariant} />}
           style={{ width: '100%' }}
           outlineStyle={{ borderRadius: 15 }}
           mode='outlined'
@@ -46,11 +39,12 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
         <Container spacing={10}>
           <TextInput
             label='Enter your password'
-            left={<TextInput.Icon icon='lock' />}
+            left={<TextInput.Icon icon='lock' color={colors.outlineVariant} />}
             right={
               <TextInput.Icon
                 onPress={() => setHidePwd(!hidePwd)}
                 icon={`eye${!hidePwd ? '-off' : ''}`}
+                color={colors.outlineVariant}
               />
             }
             secureTextEntry={hidePwd}
@@ -64,16 +58,16 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
           />
           <Container variant='rowCentered' style={{ flexWrap: 'wrap', rowGap: -12 }}>
             <Checkbox.Android status={checked ? 'checked' : 'unchecked'} onPress={handleCheck} />
-            <Text variant='bodyLarge' style={{ color: colors.outline, fontStyle: 'italic' }}>
+            <Text variant='bodyLarge' style={{ color: colors.outlineVariant, fontStyle: 'italic' }}>
               {`\u2002I agree to\u2002`}
-              <Text variant='bodyLarge' style={{ fontWeight: '900' }}>
+              <Text variant='bodyLarge' style={{ fontWeight: '900', color: colors.tertiary }}>
                 Ivuriro
               </Text>
             </Text>
             <Button compact mode='text' labelStyle={{ fontStyle: 'italic' }}>
               Terms of Service
             </Button>
-            <Text variant='bodyLarge' style={{ color: colors.outline, fontStyle: 'italic' }}>
+            <Text variant='bodyLarge' style={{ color: colors.outlineVariant, fontStyle: 'italic' }}>
               and
             </Text>
             <Button compact mode='text' labelStyle={{ fontStyle: 'italic' }}>
@@ -89,12 +83,12 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
           contentStyle={{ paddingVertical: 10 }}
           labelStyle={{ fontWeight: '700', fontSize: 16 }}
           mode='contained'
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Tabs')}
         >
           Sign Up
         </Button>
         <Container variant='rowCentered'>
-          <Text variant='bodyLarge' style={{ color: colors.outline }}>
+          <Text variant='bodyLarge' style={{ color: colors.outlineVariant }}>
             Already a member?
           </Text>
           <Button
@@ -107,34 +101,13 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
           </Button>
         </Container>
         <Container variant='row'>
-          <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
-          <Text style={{ color: colors.onSurfaceDisabled }}>OR</Text>
-          <View style={[styles.hairline, { borderColor: colors.onSurfaceDisabled }]} />
+          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
+          <Text style={{ color: colors.outlineVariant }}>OR</Text>
+          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
         </Container>
       </Container>
       {/* The lower part of the screen */}
-      <Container spacing={15}>
-        {[
-          { title: 'Google', icon: googleLogo },
-          { title: 'Apple', icon: appleLogo },
-          { title: 'Facebook', icon: facebookLogo },
-        ].map(({ title, icon }, idx) => {
-          return (
-            <Button
-              key={idx}
-              icon={() => <Image style={{ width: 25, height: 25 }} source={icon} />}
-              style={{ width: '100%' }}
-              contentStyle={{ paddingVertical: 10 }}
-              labelStyle={{ fontWeight: '700', fontSize: 16, color: colors.onBackground }}
-              mode='outlined'
-              onPress={() => handleSocialLogin(title.toLowerCase())}
-              loading={false}
-            >
-              {`Get in with ${title}`}
-            </Button>
-          );
-        })}
-      </Container>
+      <SocialButtons />
     </Container>
   );
 };

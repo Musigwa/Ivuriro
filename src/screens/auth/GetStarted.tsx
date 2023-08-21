@@ -1,7 +1,7 @@
 import appIcon from '@/assets/icons/appName.png';
 import { useAppTheme } from '@/assets/themes';
 import { Container } from '@/components/containers';
-import { GetStartedProps } from '@/interfaces';
+import { GetStartedProps } from '@/interfaces/types';
 import { Image } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
@@ -17,7 +17,7 @@ const GetStartedScreen = ({ navigation }: GetStartedProps) => {
         </Text>
         <Text
           variant='bodyLarge'
-          style={{ textAlign: 'center', fontWeight: '600', color: colors.outline }}
+          style={{ textAlign: 'center', fontWeight: '600', color: colors.outlineVariant }}
         >
           Login to enjoy the features we've privided, and stay healthy!
         </Text>
