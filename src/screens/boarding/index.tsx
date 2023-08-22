@@ -54,8 +54,8 @@ const BoardingScreen = ({ navigation }: BoardingProps) => {
             <Text variant='headlineSmall' style={{ textAlign: 'center' }}>
               {heading}
             </Text>
-            <Container variant='row'>
-              <Container variant='row' style={{ width: 'auto' }}>
+            <Container direction='row' justfy='space-between' style={{ width: '100%' }}>
+              <Container direction='row'>
                 {data.map(({}, index) => (
                   <View key={index} style={style.paginationDotContainer}>
                     <View

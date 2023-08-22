@@ -9,9 +9,14 @@ const { LightTheme, DarkTheme } = adaptNavigationTheme({
   reactNavigationDark: NavigationDarkTheme,
 });
 
+const sharedTheme = {
+  roundness: 3.5,
+};
+
 export const AppDefaultTheme = {
   ...MD3LightTheme,
   ...LightTheme,
+  ...sharedTheme,
   colors: {
     ...MD3LightTheme.colors,
     ...LightTheme.colors,
@@ -61,6 +66,7 @@ export const AppDefaultTheme = {
 export const AppDarkTheme = {
   ...MD3DarkTheme,
   ...DarkTheme,
+  ...sharedTheme,
   colors: {
     ...MD3DarkTheme.colors,
     ...DarkTheme.colors,

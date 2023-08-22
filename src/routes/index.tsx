@@ -29,6 +29,7 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
           headerTintColor: colors.text,
           headerTitleStyle,
           headerBackTitleVisible: false,
+          headerTitleAlign: 'left',
         }}
       >
         <RootStack.Screen

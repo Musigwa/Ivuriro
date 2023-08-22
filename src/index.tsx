@@ -6,7 +6,7 @@ import AppNavigator from './routes';
 
 export default () => {
   const colorScheme = useColorScheme();
-  const AppTheme = colorScheme === 'dark' ? AppDarkTheme : AppDarkTheme;
+  const AppTheme = colorScheme === 'dark' ? AppDarkTheme : AppDefaultTheme;
   return (
     <PaperProvider theme={AppTheme}>
       <StatusBar style='inverted' />

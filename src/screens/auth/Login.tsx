@@ -1,9 +1,10 @@
 import { useAppTheme } from '@/assets/themes';
 import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
+import Alternative from '@/components/separators/alternate';
 import { LoginProps } from '@/interfaces/types';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 
 const LoginScreen = ({ navigation }: LoginProps) => {
@@ -11,9 +12,9 @@ const LoginScreen = ({ navigation }: LoginProps) => {
   const { colors } = useAppTheme();
 
   return (
-    <Container variant='columnCentered' spacing={25} scrollable>
+    <Container align='center' spacing={25} scrollable>
       {/* The upper part of the screen */}
-      <Container variant='columnCentered' spacing={20}>
+      <Container align='center' spacing={20}>
         <TextInput
           label='Enter your email'
           left={<TextInput.Icon icon='email' color={colors.outlineVariant} />}
@@ -56,7 +57,7 @@ const LoginScreen = ({ navigation }: LoginProps) => {
         >
           Login
         </Button>
-        <Container variant='rowCentered'>
+        <Container direction='row' align='center' justfy='center'>
           <Text variant='bodyLarge' style={{ color: colors.outlineVariant }}>
             Don't have an account?
           </Text>
@@ -69,11 +70,7 @@ const LoginScreen = ({ navigation }: LoginProps) => {
             Sign Up
           </Button>
         </Container>
-        <Container variant='row'>
-          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
-          <Text style={{ color: colors.outlineVariant }}>OR</Text>
-          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
-        </Container>
+        <Alternative />
       </Container>
       {/* The lower part of the screen */}
       <SocialButtons />
@@ -85,8 +82,7 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   hairline: {
-    borderColor: 'gray',
-    borderWidth: StyleSheet.hairlineWidth,
+    height: StyleSheet.hairlineWidth,
     width: '45%',
   },
 });

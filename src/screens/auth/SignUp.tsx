@@ -1,9 +1,9 @@
 import { useAppTheme } from '@/assets/themes';
 import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
+import Alternative from '@/components/separators/alternate';
 import { SignUpProps } from '@/interfaces/types';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { Button, Checkbox, Text, TextInput } from 'react-native-paper';
 
 const SingUpScreen = ({ navigation }: SignUpProps) => {
@@ -15,9 +15,9 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
     setChecked(!checked);
   };
   return (
-    <Container variant='column' spacing={30} scrollable>
+    <Container spacing={30} scrollable>
       {/* The upper part of the screen */}
-      <Container variant='columnCentered' spacing={20}>
+      <Container align='center' spacing={20}>
         <TextInput
           label='Enter your full name'
           left={<TextInput.Icon icon='account' color={colors.outlineVariant} />}
@@ -56,7 +56,12 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
             autoCorrect={false}
             autoCapitalize='none'
           />
-          <Container variant='rowCentered' style={{ flexWrap: 'wrap', rowGap: -12 }}>
+          <Container
+            direction='row'
+            align='center'
+            justfy='center'
+            style={{ flexWrap: 'wrap', rowGap: -12 }}
+          >
             <Checkbox.Android status={checked ? 'checked' : 'unchecked'} onPress={handleCheck} />
             <Text variant='bodyLarge' style={{ color: colors.outlineVariant, fontStyle: 'italic' }}>
               {`\u2002I agree to\u2002`}
@@ -87,7 +92,7 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
         >
           Sign Up
         </Button>
-        <Container variant='rowCentered'>
+        <Container direction='row' justfy='center' align='center'>
           <Text variant='bodyLarge' style={{ color: colors.outlineVariant }}>
             Already a member?
           </Text>
@@ -100,11 +105,7 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
             Login
           </Button>
         </Container>
-        <Container variant='row'>
-          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
-          <Text style={{ color: colors.outlineVariant }}>OR</Text>
-          <View style={[styles.hairline, { borderColor: colors.outlineVariant }]} />
-        </Container>
+        <Alternative />
       </Container>
       {/* The lower part of the screen */}
       <SocialButtons />
@@ -113,11 +114,3 @@ const SingUpScreen = ({ navigation }: SignUpProps) => {
 };
 
 export default SingUpScreen;
-
-const styles = StyleSheet.create({
-  hairline: {
-    borderColor: 'gray',
-    borderWidth: StyleSheet.hairlineWidth,
-    width: '45%',
-  },
-});

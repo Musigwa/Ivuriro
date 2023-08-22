@@ -1,48 +1,46 @@
 import React, { Children, FC, PropsWithChildren } from 'react';
-import { ScrollView, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { ScrollView, View, ViewProps, ViewStyle } from 'react-native';
 
+type alignType = 'flex-start' | 'center' | 'flex-end';
 type ContainerProps = ViewProps & {
-  variant?: 'row' | 'column' | 'columnCentered' | 'rowCentered';
   spacing?: number;
   scrollable?: boolean;
+  align?: alignType;
+  justfy?: alignType | 'space-between' | 'space-around' | 'space-evenly';
+  direction?: 'column' | 'row';
+  reverse?: boolean;
 };
 
 export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   children,
   spacing,
   style,
-  variant = 'column',
-  scrollable = false,
+  scrollable,
+  direction = 'column',
+  justfy,
+  align,
+  reverse,
 }) => {
   let defaultStyle: ViewStyle = {
-    ...styles.column,
-    width: '100%',
+    width: direction === 'column' ? '100%' : 'auto',
+    justifyContent: justfy,
+    alignItems: align,
+    flexDirection: `${direction}${reverse ? '-reverse' : ''}`,
   };
-  switch (variant) {
-    case 'row':
-      defaultStyle = { ...defaultStyle, ...styles.row };
-      break;
-    case 'columnCentered':
-      defaultStyle = { ...defaultStyle, ...styles.center };
-      break;
-    case 'rowCentered':
-      defaultStyle = { ...defaultStyle, flexDirection: 'row', ...styles.center };
-      break;
-    default:
-      break;
-  }
+
   const RenderChildren = Children.map(children, (child, idx) => (
     <>
-      {idx !== 0 && <View style={{ height: spacing }} />}
+      {idx !== 0 && <View style={direction === 'row' ? { width: spacing } : { height: spacing }} />}
       {child}
     </>
   ));
 
   return scrollable ? (
     <ScrollView
+      horizontal={direction === 'row'}
       showsVerticalScrollIndicator={false}
-      style={{ flex: 1 }}
-      contentContainerStyle={[defaultStyle, style, { padding: 25 }]}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={[defaultStyle, { padding: 25 }, style]}
     >
       {RenderChildren}
     </ScrollView>
@@ -50,17 +48,3 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
     <View style={[defaultStyle, style]}>{RenderChildren}</View>
   );
 };
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  column: {
-    alignItems: 'center',
-  },
-  center: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

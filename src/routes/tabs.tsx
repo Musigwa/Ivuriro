@@ -7,10 +7,13 @@ import { headerTitleStyle } from '@/style';
 import MaterialComIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import HomeNavigator from './home';
+import { useAppTheme } from '@/assets/themes';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const AppTabs = () => {
+  const { colors } = useAppTheme();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -35,9 +38,11 @@ const AppTabs = () => {
         },
         headerTitleStyle,
         tabBarShowLabel: false,
+        headerShown: false,
+        headerTitleAlign: 'left',
       })}
     >
-      <Tab.Screen name='Home' component={InventoryScreen} />
+      <Tab.Screen name='Home' component={HomeNavigator} />
       <Tab.Screen name='Chat' component={ChatScreen} />
       <Tab.Screen name='Schedule' component={ScheduleScreen} />
       <Tab.Screen name='Profile' component={ProfileScreen} />

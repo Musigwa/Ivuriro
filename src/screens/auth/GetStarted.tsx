@@ -9,9 +9,14 @@ const GetStartedScreen = ({ navigation }: GetStartedProps) => {
   const { colors } = useAppTheme();
 
   return (
-    <Container variant='columnCentered' spacing={65} style={{ flex: 1, paddingHorizontal: 20 }}>
+    <Container
+      align='center'
+      justfy='center'
+      spacing={65}
+      style={{ flex: 1, paddingHorizontal: 20 }}
+    >
       <Image style={{ width: 150, height: 150 }} source={appIcon} />
-      <Container spacing={15} style={{}}>
+      <Container spacing={15} align='center'>
         <Text variant='headlineMedium' style={{ fontWeight: '500' }}>
           Let's get started!
         </Text>
