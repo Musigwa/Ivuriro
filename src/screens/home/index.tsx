@@ -1,16 +1,24 @@
 import image from '@/assets/images/landing3.png';
 import { useAppTheme } from '@/assets/themes';
+import Card from '@/components/cards';
 import { Container } from '@/components/containers';
 import Headline from '@/components/separators/headline';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Avatar, Button, Searchbar, Text } from 'react-native-paper';
+import { doctors, healthArticles } from './data';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import moment from 'moment';
+import Doctor from '@/components/cards/Doctor';
+import Article from '@/components/cards/Article';
 
 const InventoryScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = (query: string) => setSearchQuery(query);
   const { colors } = useAppTheme();
+  const insets = useSafeAreaInsets();
+
   const data = [
     { icon: 'stethoscope', title: 'Doctor' },
     { icon: 'pill', title: 'Pharmacy' },
@@ -18,21 +26,8 @@ const InventoryScreen = () => {
     { icon: 'ambulance', title: 'Ambulance' },
   ];
 
-  const doctors = [
-    { name: 'Dr. Olivia Bennett', speciality: 'Cardiology' },
-    { name: 'Dr. Marcus Rodriguez', speciality: 'Orthopedic Surgery' },
-    { name: 'Dr. Emily Carter', speciality: 'Pediatric Neurology' },
-    { name: 'Dr. Samuel Nguyen', speciality: 'Gastroenterology' },
-    { name: 'Dr. Isabella Patel', speciality: 'Dermatology' },
-    { name: 'Dr. Elijah Foster', speciality: 'Oncology' },
-    { name: 'Dr. Sophia Mitchell', speciality: 'Psychiatry' },
-    { name: 'Dr. Alexander Chen', speciality: 'Neurosurgery' },
-    { name: 'Dr. Ava Williams', speciality: 'Obstetrics & Gynecology' },
-    { name: 'Dr. Jackson Davis', speciality: 'Emergency Medicine' },
-  ];
-
   return (
-    <Container style={styles.container} spacing={15}>
+    <Container style={[styles.container]} spacing={15}>
       <Container spacing={10}>
         <Searchbar
           style={styles.searchbar}
@@ -51,7 +46,7 @@ const InventoryScreen = () => {
           ))}
         </Container>
       </Container>
-      <Container scrollable style={{ padding: 0 }}>
+      <Container scrollable style={{ padding: 0 }} spacing={10}>
         <Container
           direction='row'
           justfy='space-between'
@@ -69,55 +64,23 @@ const InventoryScreen = () => {
           <Image source={image} style={styles.image} />
         </Container>
         <Headline title='Doctors' onPress={() => {}} />
-        <Container scrollable direction='row' spacing={20} style={{ padding: 0 }}>
-          {doctors.map(({ name, speciality }, idx) => (
-            <Container
-              key={idx}
-              style={[
-                styles.doCard,
-                { backgroundColor: colors.surface, borderColor: colors.outline },
-              ]}
-              align='center'
-              spacing={20}
-            >
-              <Avatar.Image source={{ uri: 'https://picsum.photos/700' }} size={120} />
-              <Container>
-                <Text
-                  variant='bodyLarge'
-                  style={{ fontWeight: '700', width: '100%' }}
-                  numberOfLines={1}
-                >
-                  {name}
-                </Text>
-                <Text
-                  variant='bodyMedium'
-                  style={{ color: colors.outline, fontWeight: '700', width: '100%' }}
-                  numberOfLines={1}
-                >
-                  {speciality}
-                </Text>
-              </Container>
-              <Container
-                direction='row'
-                style={{ padding: 0, width: '100%' }}
-                spacing={0}
-                justfy='space-between'
-              >
-                <Container direction='row' spacing={2}>
-                  <MaterialIcons name='star' size={18} color={colors.primary} />
-                  <Text style={{ textAlign: 'center', color: colors.primary }}>
-                    {(Math.random() * 5).toFixed(1)}
-                  </Text>
-                </Container>
-                <Container direction='row' spacing={2}>
-                  <Ionicons name='location-sharp' size={15} color={colors.text} />
-                  <Text>{(Math.random() * 5).toFixed(1)}km away</Text>
-                </Container>
-              </Container>
-            </Container>
+        <Container
+          scrollable
+          direction='row'
+          spacing={20}
+          style={{ padding: 0, paddingVertical: 5, paddingHorizontal: 3 }}
+        >
+          {doctors.map((props, idx) => (
+            <Doctor key={idx} {...props} />
           ))}
         </Container>
         <Headline title='Health Articles' onPress={() => {}} />
+        {/* Articles */}
+        <Container spacing={20} style={{ marginBottom: 20 }}>
+          {healthArticles.map((props, idx) => (
+            <Article {...props} key={idx} />
+          ))}
+        </Container>
       </Container>
     </Container>
   );
@@ -126,7 +89,7 @@ const InventoryScreen = () => {
 export default InventoryScreen;
 
 const styles = StyleSheet.create({
-  container: { padding: 25 },
+  container: { padding: 25, paddingBottom: 180 },
   searchbar: { width: '100%', borderRadius: 15 },
   avatarContainer: { flex: 1, alignItems: 'center' },
   avatar: { backgroundColor: 'transparent' },
@@ -150,5 +113,9 @@ const styles = StyleSheet.create({
     width: 200,
     borderRadius: 10,
     padding: 15,
+    // shadowOffset: { width: 1, height: 1 },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+    // elevation: 5,
   },
 });

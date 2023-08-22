@@ -1,15 +1,6 @@
 import React, { Children, FC, PropsWithChildren } from 'react';
 import { ScrollView, View, ViewProps, ViewStyle } from 'react-native';
-
-type alignType = 'flex-start' | 'center' | 'flex-end';
-type ContainerProps = ViewProps & {
-  spacing?: number;
-  scrollable?: boolean;
-  align?: alignType;
-  justfy?: alignType | 'space-between' | 'space-around' | 'space-evenly';
-  direction?: 'column' | 'row';
-  reverse?: boolean;
-};
+import { ContainerProps } from '@/interfaces/types';
 
 export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   children,

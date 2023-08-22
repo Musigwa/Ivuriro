@@ -1,5 +1,6 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ViewProps } from 'react-native';
 
 export type RootStackParamList = {
   Boarding: undefined;
@@ -35,4 +36,15 @@ export type TabParamList = {
   Profile: NavigatorScreenParams<ProfileStackParamList>;
   Schedule: NavigatorScreenParams<ScheduleStackParamList>;
   Chat: NavigatorScreenParams<ChatStackParamList>;
+};
+
+type alignType = 'flex-start' | 'center' | 'flex-end';
+
+export type ContainerProps = ViewProps & {
+  spacing?: number;
+  scrollable?: boolean;
+  align?: alignType;
+  justfy?: alignType | 'space-between' | 'space-around' | 'space-evenly';
+  direction?: 'column' | 'row';
+  reverse?: boolean;
 };
