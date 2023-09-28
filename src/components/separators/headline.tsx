@@ -7,9 +7,7 @@ const Headline: FC<
 > = ({ title, actionTitle = 'See all', onPress }) => {
   return (
     <Container direction='row' justfy='space-between' align='center' style={{ marginVertical: 3 }}>
-      <Text variant='titleLarge' style={{ fontWeight: '700' }}>
-        {title}
-      </Text>
+      <Text style={{ fontWeight: '700', fontSize: 18 }}>{title}</Text>
       <Button mode='text' labelStyle={{ fontWeight: '700', fontSize: 16 }} onPress={onPress}>
         {actionTitle}
       </Button>

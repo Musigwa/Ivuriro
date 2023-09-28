@@ -4,7 +4,7 @@ import Card from '@/components/cards';
 import { Container } from '@/components/containers';
 import Headline from '@/components/separators/headline';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Avatar, Button, Searchbar, Text } from 'react-native-paper';
 import { doctors, healthArticles } from './data';
@@ -12,8 +12,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import moment from 'moment';
 import Doctor from '@/components/cards/Doctor';
 import Article from '@/components/cards/Article';
+import { InventoryProps } from '@/interfaces/types';
 
-const InventoryScreen = () => {
+const InventoryScreen: FC<PropsWithChildren<InventoryProps>> = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = (query: string) => setSearchQuery(query);
   const { colors } = useAppTheme();
@@ -63,7 +64,7 @@ const InventoryScreen = () => {
           <View style={[{ backgroundColor: colors.background }, styles.behindImage]} />
           <Image source={image} style={styles.image} />
         </Container>
-        <Headline title='Doctors' onPress={() => {}} />
+        <Headline title='Top Doctors' onPress={() => navigation.navigate('Doctors')} />
         <Container
           scrollable
           direction='row'
@@ -71,7 +72,7 @@ const InventoryScreen = () => {
           style={{ padding: 0, paddingVertical: 5, paddingHorizontal: 3 }}
         >
           {doctors.map((props, idx) => (
-            <Doctor key={idx} {...props} />
+            <Doctor key={idx} {...props} circular />
           ))}
         </Container>
         <Headline title='Health Articles' onPress={() => {}} />

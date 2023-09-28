@@ -14,14 +14,14 @@ const CardContainer: FC<PropsWithChildren<ContainerProps & { elevated?: boolean 
   return (
     <Container
       style={[
-        styles.container,
         {
           backgroundColor: colors.surface,
           borderColor: colors.outline,
           shadowColor: colors.outlineVariant,
         },
-        style,
         elevated ? styles.elevated : null,
+        styles.container,
+        style,
       ]}
       {...props}
     >

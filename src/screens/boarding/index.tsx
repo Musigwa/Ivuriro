@@ -3,7 +3,7 @@ import { Container } from '@/components/containers';
 import { BoardingProps } from '@/interfaces/types';
 import AntDesignIcons from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import { Animated, View } from 'react-native';
 import type { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
 import PagerView from 'react-native-pager-view';
@@ -14,7 +14,7 @@ import style from './style';
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
-const BoardingScreen = ({ navigation }: BoardingProps) => {
+const BoardingScreen: FC<PropsWithChildren<BoardingProps>> = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const [position, setPosition] = useState(0);
   const scrollOffsetAnimatedValue = React.useRef(new Animated.Value(0)).current;

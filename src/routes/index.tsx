@@ -10,6 +10,7 @@ import LoginScreen from '@/screens/auth/Login';
 import AppTabs from './tabs';
 import { headerTitleStyle } from '@/style';
 import { StatusBar } from 'expo-status-bar';
+import DoctorsScreen from '@/screens/home/doctors';
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
@@ -18,7 +19,7 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
     <NavigationContainer
       theme={{
         ...theme,
-        colors: { ...theme.colors, card: theme.colors.surface, border: 'transparent' },
+        colors: { ...theme.colors, card: theme.colors.surface },
       }}
     >
       <StatusBar style='auto' />
@@ -53,6 +54,11 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
         />
         <RootStack.Screen name='SignUp' component={SignUpScreen} options={{ title: 'Sign Up' }} />
         <RootStack.Screen name='Tabs' component={AppTabs} options={{ headerShown: false }} />
+        <RootStack.Screen
+          name='Doctors'
+          component={DoctorsScreen}
+          options={{ title: 'Top Doctors' }}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );

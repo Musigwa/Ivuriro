@@ -2,10 +2,11 @@ import appIcon from '@/assets/icons/appName.png';
 import { useAppTheme } from '@/assets/themes';
 import { Container } from '@/components/containers';
 import { GetStartedProps } from '@/interfaces/types';
+import { FC, PropsWithChildren } from 'react';
 import { Image } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
-const GetStartedScreen = ({ navigation }: GetStartedProps) => {
+const GetStartedScreen: FC<PropsWithChildren<GetStartedProps>> = ({ navigation }) => {
   const { colors } = useAppTheme();
 
   return (

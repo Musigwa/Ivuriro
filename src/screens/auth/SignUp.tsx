@@ -3,10 +3,10 @@ import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
 import Alternative from '@/components/separators/alternate';
 import { SignUpProps } from '@/interfaces/types';
-import React, { useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import { Button, Checkbox, Text, TextInput } from 'react-native-paper';
 
-const SingUpScreen = ({ navigation }: SignUpProps) => {
+const SingUpScreen: FC<PropsWithChildren<SignUpProps>> = ({ navigation }) => {
   const [hidePwd, setHidePwd] = useState(true);
   const [checked, setChecked] = useState(false);
   const { colors } = useAppTheme();

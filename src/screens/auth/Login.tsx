@@ -3,11 +3,11 @@ import SocialButtons from '@/components/buttons/social';
 import { Container } from '@/components/containers';
 import Alternative from '@/components/separators/alternate';
 import { LoginProps } from '@/interfaces/types';
-import React, { useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 
-const LoginScreen = ({ navigation }: LoginProps) => {
+const LoginScreen: FC<PropsWithChildren<LoginProps>> = ({ navigation }) => {
   const [hidePwd, setHidePwd] = useState(true);
   const { colors } = useAppTheme();
 
