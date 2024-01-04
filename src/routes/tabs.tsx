@@ -25,16 +25,16 @@ const AppTabs = () => {
           let properties: any = { ...props, size: 32 };
           switch (route.name) {
             case 'Message':
-              properties.name = 'chat-outline';
+              properties.name = 'chat';
               break;
             case 'Home':
-              properties.name = 'home-outline';
+              properties.name = 'home';
               break;
             case 'Profile':
-              properties.name = 'account-tie-outline';
+              properties.name = 'account';
               break;
             case 'Schedule':
-              properties = { ...properties, size: 28, name: 'calendar-month-outline' };
+              properties = { ...properties, size: 28, name: 'calendar-month' };
             default:
               break;
           }
@@ -94,6 +94,7 @@ const AppTabs = () => {
               size={28}
               color={colors.outlineVariant}
               style={{ marginRight: 15 }}
+              onPress={() => {}}
             />
           ),
         }}
