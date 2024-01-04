@@ -23,3 +23,17 @@ export const geoDistanceCalc = (a: CoordsType, b: CoordsType) => {
 
   return +(earthRadius * centralAngle).toFixed(1); // Distance in kilometers
 };
+
+export const ellipsizeText = (text: string = '', n: number) =>
+  text.length > n ? text.slice(0, n - 1) + '\u2026' : text;
+
+export const formatTimestamp = (text: string, type: 'elapsed' | '') => {
+  switch (type) {
+    case 'elapsed':
+      return text
+        .replace(/year/g, 'yr')
+        .replace(/hour/g, 'hr')
+        .replace(/minute/g, 'min')
+        .replace(/second/g, 'sec');
+  }
+};

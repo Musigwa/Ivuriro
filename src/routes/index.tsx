@@ -1,16 +1,15 @@
-import { AppThemeType, useAppTheme } from '@/assets/themes';
+import { AppThemeType } from '@/assets/themes';
+import { RootStackParamList } from '@/interfaces/types';
 import GetStartedScreen from '@/screens/auth/GetStarted';
+import LoginScreen from '@/screens/auth/Login';
 import SignUpScreen from '@/screens/auth/SignUp';
+import BoardingScreen from '@/screens/boarding';
+import DoctorsScreen from '@/screens/home/doctors';
+import { headerTitleStyle } from '@/style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BoardingScreen from '@/screens/boarding';
 import * as React from 'react';
-import { RootStackParamList } from '@/interfaces/types';
-import LoginScreen from '@/screens/auth/Login';
 import AppTabs from './tabs';
-import { headerTitleStyle } from '@/style';
-import { StatusBar } from 'expo-status-bar';
-import DoctorsScreen from '@/screens/home/doctors';
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
@@ -22,7 +21,6 @@ const AppNavigator = ({ theme }: { theme: AppThemeType }) => {
         colors: { ...theme.colors, card: theme.colors.surface },
       }}
     >
-      <StatusBar style='auto' />
       <RootStack.Navigator
         initialRouteName='Boarding'
         screenOptions={{
