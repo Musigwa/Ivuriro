@@ -9,7 +9,7 @@ export default () => {
   const AppTheme = colorScheme === 'dark' ? AppDarkTheme : AppDefaultTheme;
   return (
     <PaperProvider theme={AppTheme}>
-      <StatusBar style='inverted' />
+      <StatusBar style='dark' />
       <AppNavigator theme={AppTheme} />
     </PaperProvider>
   );

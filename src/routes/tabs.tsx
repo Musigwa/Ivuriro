@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Avatar, Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -23,7 +24,7 @@ const AppTabs = () => {
         tabBarIcon: props => {
           let properties: any = { ...props, size: 32 };
           switch (route.name) {
-            case 'Chat':
+            case 'Message':
               properties.name = 'chat-outline';
               break;
             case 'Home':
@@ -83,7 +84,20 @@ const AppTabs = () => {
           },
         }}
       />
-      <Tab.Screen name='Chat' component={ChatScreen} />
+      <Tab.Screen
+        name='Message'
+        component={ChatScreen}
+        options={{
+          headerRight: () => (
+            <Feather
+              name='search'
+              size={28}
+              color={colors.outlineVariant}
+              style={{ marginRight: 15 }}
+            />
+          ),
+        }}
+      />
       <Tab.Screen name='Schedule' component={ScheduleScreen} />
       <Tab.Screen name='Profile' component={ProfileScreen} />
     </Tab.Navigator>

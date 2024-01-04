@@ -27,13 +27,30 @@ export const geoDistanceCalc = (a: CoordsType, b: CoordsType) => {
 export const ellipsizeText = (text: string = '', n: number) =>
   text.length > n ? text.slice(0, n - 1) + '\u2026' : text;
 
-export const formatTimestamp = (text: string, type: 'elapsed' | '') => {
-  switch (type) {
-    case 'elapsed':
-      return text
-        .replace(/year/g, 'yr')
-        .replace(/hour/g, 'hr')
-        .replace(/minute/g, 'min')
-        .replace(/second/g, 'sec');
-  }
+export const formatTimestamp = (lastMessageTimestamp: string): string | null => {
+  const lastMessageDate = new Date(lastMessageTimestamp);
+  if (isNaN(lastMessageDate.getTime())) return 'invalid';
+  const now = new Date();
+  const yearDifference = now.getFullYear() - lastMessageDate.getFullYear();
+
+  if (yearDifference === 0) {
+    const monthDifference = now.getMonth() - lastMessageDate.getMonth();
+    const dayDifference = now.getDate() - lastMessageDate.getDate();
+
+    if (monthDifference === 0) {
+      if (dayDifference === 0) {
+        const hourDifference = now.getHours() - lastMessageDate.getHours();
+        if (hourDifference === 0) {
+          const minuteDifference = now.getMinutes() - lastMessageDate.getMinutes();
+          if (minuteDifference === 0) {
+            const secondDifference = now.getSeconds() - lastMessageDate.getSeconds();
+            return `${secondDifference} sec${secondDifference > 1 ? 's' : ''} ago`;
+          } else return `${minuteDifference} min${minuteDifference > 1 ? 's' : ''} ago`;
+        } else return `${hourDifference} hr${hourDifference > 1 ? 's' : ''} ago`;
+      } else return `${dayDifference} day${dayDifference > 1 ? 's' : ''} ago`;
+    } else {
+      const absoluteMonthDifference = Math.abs(monthDifference);
+      return `${absoluteMonthDifference} month${absoluteMonthDifference > 1 ? 's' : ''} ago`;
+    }
+  } else return `${yearDifference} yr${yearDifference > 1 ? 's' : ''} ago`;
 };

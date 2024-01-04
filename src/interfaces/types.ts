@@ -37,18 +37,11 @@ export type ProfileStackParamList = {
   UserDetails: undefined;
 };
 
-// export type TabParamList = {
-//   Home: NavigatorScreenParams<HomeStackParamList>;
-//   Profile: NavigatorScreenParams<ProfileStackParamList>;
-//   Schedule: NavigatorScreenParams<ScheduleStackParamList>;
-//   Chat: NavigatorScreenParams<ChatStackParamList>;
-// };
-
 export type TabParamList = {
   Home: undefined;
   Profile: undefined;
   Schedule: undefined;
-  Chat: undefined;
+  Message: undefined;
 };
 
 type HomeScreenProps = CompositeScreenProps<
@@ -66,3 +59,5 @@ export type ContainerProps = ViewProps & {
   direction?: 'column' | 'row';
   reverse?: boolean;
 };
+
+export type MessageStatus = 'loading' | 'sent' | 'failed' | 'received' | 'read';

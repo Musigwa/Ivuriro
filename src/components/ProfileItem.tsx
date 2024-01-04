@@ -15,14 +15,14 @@ const ProfileItem: FC<PropsWithChildren<ItemProps>> = ({
   title,
   description,
   titleMaxLength = 18,
-  descMaxLength = 32,
+  descMaxLength = 30,
 }) => {
   const { colors } = useTheme();
   return (
     <View style={styles.container}>
       <Avatar.Image source={profile} />
       <View style={{ justifyContent: 'space-evenly' }}>
-        <Text variant='titleLarge' style={{ fontWeight: '700' }}>
+        <Text variant='titleLarge' style={{ fontWeight: '600' }}>
           {ellipsizeText(title, titleMaxLength)}
         </Text>
         <Text variant='titleMedium' style={{ fontWeight: '700', color: colors.outline }}>
